@@ -91,6 +91,18 @@ class LinkedList:
         '''reverse the sequence of node pointers in the linked list'''
         # Given [1->2->3->4->5] reverse pointers [1<-2<-3<-4<-5]
         # Turning list to [5->4->3->2->1]
+        if self.head == None:
+            return
+        # When we reach last node
+        elif current.next == None:
+            # Reverse head and tail pointers - tail is now the head
+            self.tail = self.head
+            current.next = previous
+            self.head = current
+        else:
+            next = current.next
+            current.next = previous
+            self.reverse_list_recur(next, current)
 
 my_list = LinkedList()
 # print(my_list)
@@ -104,4 +116,7 @@ print(my_list)
 print(my_list.search_val(3))
 print(my_list.length())
 print(my_list.remove_val_by_index(0))
+print(my_list)
+
+my_list.reverse_list_recur(my_list.head, None)
 print(my_list)
