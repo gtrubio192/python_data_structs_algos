@@ -64,11 +64,22 @@ class BSTDemo:
     def _post_order(self, curr):
         pass
 
+    # O(h) - average, O(log n) - in balanced BST
     def find_val(self, key):
-        pass
+        return self._find_val(self.root, key)
 
     def _find_val(self, curr, key):
-        pass
+        if curr:
+            # base case
+            if key == curr.data:
+                return "Value found in tree"
+            # traverse left
+            elif key < curr.data:
+                return self._find_val(curr.left_child, key)
+            else:
+                return self._find_val(curr.right_child, key)
+        return "Value not found in tree"
+
 
     def delete_val(self, key):
         pass
@@ -87,3 +98,5 @@ tree.insert("H")
 tree.in_order()
 
 tree.pre_order()
+
+print(tree.find_val("A"))
