@@ -41,17 +41,21 @@ class BSTDemo:
     def _in_order(self, curr):
         # go all the way to left most node recursively (print left, root, right)
         if curr:
-            self._in_order(curr.left_child)
-            print(curr.data, end=" ")
-            self._in_order(curr.right_child)
+            self._in_order(curr.left_child)     # print left
+            print(curr.data, end=" ")           # root // middle
+            self._in_order(curr.right_child)    # right
 
 
     def pre_order(self):
         '''root, left, right'''
-        pass
+        self._pre_order(self.root)
+        print(" ")
 
     def _pre_order(self, curr):
-        pass
+        if curr:
+            print(curr.data, end=" ")           # root
+            self._in_order(curr.left_child)     # print left
+            self._in_order(curr.right_child)    # right
 
     def post_order(self):
         '''left, right, root'''
@@ -81,3 +85,5 @@ tree.insert("B")
 tree.insert("K")
 tree.insert("H")
 tree.in_order()
+
+tree.pre_order()
