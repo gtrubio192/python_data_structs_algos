@@ -8,6 +8,7 @@ class AlgoHashTable:
         return [[] for _ in range(self.size)]
 
     def set_val(self, key, value):
+        # % used to return a value from 0-self.size
         hashed_key = hash(key)%self.size
         bucket = self.hash_table[hashed_key]
         found_key = False

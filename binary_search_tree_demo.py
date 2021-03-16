@@ -89,8 +89,10 @@ class BSTDemo:
                     min_child = self.min_right_subtree(curr.right_child)
                     curr.data = min_child.data
                     self._delete_val(curr.right_child, curr, False, min_child.data)
+                # scenario: node with no children aka leaf node
                 elif curr.left_child == None and curr.right_child == None:
                     # make sure it has a prev, aka not the tree root
+                    # then, make previous node point to nothing. essentially deleting the leaf node
                     if prev:
                         if is_left:
                             prev.left_child = None
@@ -99,8 +101,10 @@ class BSTDemo:
                     # we have the tree root!
                     else:
                         self.root = None
+                # scenario: node to delete with only 1 child on right
                 elif curr.left_child == None:
                     # make sure it has a prev, aka not the tree root
+                    # point the prev node skip curr, and point to currents child. essentially deleting node
                     if prev:
                         if is_left:
                             prev.left_child = curr.right_child
@@ -109,6 +113,7 @@ class BSTDemo:
                     # we have the tree root!
                     else:
                         self.root = curr.right_child
+                # scenario: node to delete with only 1 child on left
                 else:
                     # make sure it has a prev, aka not the tree root
                     if prev:
@@ -118,8 +123,10 @@ class BSTDemo:
                             prev.right_child = curr.left_child
                     else:
                         self.root = curr.left_child
+            # key is less than current nodes data, recursively go down tree
             elif key < curr.data:
                 self._delete_val(curr.left_child, curr, True, key)
+            # key is greater than current nodes data, recursively go down tree
             elif key > curr.data:
                 self._delete_val(curr.right_child, curr, False, key)
         else:
